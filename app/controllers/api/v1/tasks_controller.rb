@@ -1,5 +1,11 @@
 class Api::V1::TasksController < ApplicationController
 
+  def index
+    tasks = Task.all.order(created_at: :desc)
+
+    render json: tasks
+  end
+
   def create
     task = Task.new(task_params)
     if task.save
