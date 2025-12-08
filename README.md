@@ -72,7 +72,7 @@ rspec spec/models
 rspec spec/requests/api/v1/tasks_spec.rb
 ````
 
-API Endpoints
+## API Endpoints
 
 The API is versioned at /api/v1. All task-related operations are handled by the following routes:  
 
