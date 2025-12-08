@@ -71,3 +71,14 @@ rspec spec/models
 # Run tests in a specific file
 rspec spec/requests/api/v1/tasks_spec.rb
 ````
+
+API Endpoints
+
+The API is versioned at /api/v1. All task-related operations are handled by the following routes:  
+
+HTTP Verb	Path	Description
+
+````
+GET	/api/v1/tasks	Retrieves a list of all tasks.
+POST	/api/v1/tasks	Creates a new task.
+````
