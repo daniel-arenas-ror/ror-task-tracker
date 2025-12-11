@@ -25,8 +25,11 @@ class Api::V1::TasksController < ApplicationController
   end
 
   def destroy
-    @task.destroy
-    head :no_content
+    if @task.destroy
+      head :no_content
+    else
+      render json: { errors: @task.errors.full_messages }, status: :unprocessable_entity
+    end
   end
 
   private
