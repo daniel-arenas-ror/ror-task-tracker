@@ -1,4 +1,5 @@
 class Api::V1::TasksController < ApplicationController
+  before_action :load_task, only: [:update]
 
   def index
     tasks = Task.all.order(created_at: :desc)
@@ -15,6 +16,14 @@ class Api::V1::TasksController < ApplicationController
     end
   end
 
+  def update
+    if @task.update(task_params)
+      render json: @task
+    else
+      render json: { errors: @task.errors.full_messages }, status: :unprocessable_entity
+    end
+  end
+
   private
 
   def task_params
@@ -22,5 +31,10 @@ class Api::V1::TasksController < ApplicationController
       :description,
       :done
     )
+  end
+
+
+  def load_task
+    @task = Task.find(params[:id])
   end
 end
