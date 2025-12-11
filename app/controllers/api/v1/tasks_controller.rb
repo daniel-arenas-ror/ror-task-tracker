@@ -1,5 +1,5 @@
 class Api::V1::TasksController < ApplicationController
-  before_action :load_task, only: [:update]
+  before_action :load_task, only: [:update, :destroy]
 
   def index
     tasks = Task.all.order(created_at: :desc)
@@ -22,6 +22,11 @@ class Api::V1::TasksController < ApplicationController
     else
       render json: { errors: @task.errors.full_messages }, status: :unprocessable_entity
     end
+  end
+
+  def destroy
+    @task.destroy
+    head :no_content
   end
 
   private
